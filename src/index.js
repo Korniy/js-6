@@ -3,12 +3,15 @@ import { fetchImages } from './fetchImages';
 
 const formEl = document.querySelector('.search-form');
 const divEl = document.querySelector('.gallery');
+const btnEl = document.querySelector('.load-more');
+
+const perPage = 40;
 
 formEl.addEventListener('submit', onFormSubmit);
 
 async function onFormSubmit(event) {
   event.preventDefault();
-  const inputValue = event.currentTarget.elements.searchQuery.value;
+  const inputValue = event.currentTarget.elements.searchQuery.value.trim();
 
   try {
   } catch (error) {
@@ -29,28 +32,27 @@ function createImagesListMarcup(imageCard) {
         downloads,
       }) => {
         return ` <div class="photo-card">
-                <a>
-                <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-                </a>
-               
-                  <div class="info">
-                     <p class="info-item">
+                  <a class='link-card' href='${largeImageURL}'>
+                    <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+                  </a>
+                    <div class="info">
+                      <p class="info-item">
                         <b>${likes}</b>
-                     </p>
+                      </p>
 
-                     <p class="info-item">
+                      <p class="info-item">
                         <b>${views}</b>
-                     </p>
+                      </p>
 
-                     <p class="info-item">
+                      <p class="info-item">
                         <b>${comments}</b>
-                     </p>
+                      </p>
 
-                     <p class="info-item">
+                      <p class="info-item">
                         <b>${downloads}</b>
-                     </p>
+                      </p>
                   </div>
-            </div>`;
+                </div>`;
       }
     )
     .join('');
