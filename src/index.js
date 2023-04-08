@@ -5,8 +5,6 @@ const formEl = document.querySelector('.search-form');
 const divEl = document.querySelector('.gallery');
 const btnEl = document.querySelector('.load-more');
 
-const perPage = 40;
-
 formEl.addEventListener('submit', onFormSubmit);
 
 async function onFormSubmit(event) {
@@ -18,6 +16,8 @@ async function onFormSubmit(event) {
     console.log(error.message);
   }
 }
+
+async function SearchImages() {}
 
 function createImagesListMarcup(imageCard) {
   const marcup = imageCard
@@ -34,24 +34,21 @@ function createImagesListMarcup(imageCard) {
         return ` <div class="photo-card">
                   <a class='link-card' href='${largeImageURL}'>
                     <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+                      <div class="info">
+                        <p class="info-item">
+                          <b>${likes}</b>
+                        </p>
+                        <p class="info-item">
+                          <b>${views}</b>
+                        </p>
+                        <p class="info-item">
+                          <b>${comments}</b>
+                        </p>
+                        <p class="info-item">
+                          <b>${downloads}</b>
+                        </p>
+                      </div>
                   </a>
-                    <div class="info">
-                      <p class="info-item">
-                        <b>${likes}</b>
-                      </p>
-
-                      <p class="info-item">
-                        <b>${views}</b>
-                      </p>
-
-                      <p class="info-item">
-                        <b>${comments}</b>
-                      </p>
-
-                      <p class="info-item">
-                        <b>${downloads}</b>
-                      </p>
-                  </div>
                 </div>`;
       }
     )
@@ -60,6 +57,6 @@ function createImagesListMarcup(imageCard) {
   divEl.insertAdjacentHTML('beforeend', marcup);
 }
 
-// function resetInput() {
-//   formEl.innerHTML = '';
-// }
+function resetMarcup() {
+  divEl.innerHTML = '';
+}
